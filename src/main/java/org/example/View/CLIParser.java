@@ -3,6 +3,7 @@ package org.example.View;
 
 import org.example.Exception.BudgetTrackerException;
 import org.example.Exception.CLIException;
+import org.example.Model.budgetSummary;
 import org.example.Model.budgetTracker;
 import org.example.Service.BudgetTrackerService;
 
@@ -25,8 +26,11 @@ public class CLIParser {
             return interpretAddAction();
         } else if (command.equals("view")) {
             return interpretViewAction();
-        } else {
-            throw new CLIException("Valid options are add/view.  Try again...");
+        } else if (command.equals("summary")){
+            return interpretSummaryAction();
+        }
+        else {
+            throw new CLIException("Valid options are add/view/summary.  Try again...");
         }
     }
 
@@ -50,5 +54,13 @@ public class CLIParser {
         List<budgetTracker> budgetEntriesList = budgetTrackerService.getBudgetTrackerList();
 
         return budgetEntriesList.toString();
+    }
+
+    public String interpretSummaryAction() throws BudgetTrackerException {
+//        List<budgetTracker> budgetEntriesList = new budgetTrackerService.getBudgetTrackerList().toString();
+        List<budgetSummary> budgetSummaryList = budgetTrackerService.getBudgetSummaryList();
+
+
+        return budgetSummaryList.toString();
     }
 }
