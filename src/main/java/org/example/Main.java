@@ -18,7 +18,7 @@ public class Main {
         CLIParser cliParser = new CLIParser();
 
         while (true){
-            System.out.println("add / view / summary");
+            System.out.println("add / view / search / summary");
             String input = sc.nextLine();
 
             log.info("Started main menu");

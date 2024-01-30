@@ -97,4 +97,26 @@ public class BudgetTrackerService {
 
     }
 
+    public List<budgetTracker> getBudgetTrackerSearchList(String searchWord) throws BudgetTrackerException{
+//        If there is an empty source list, indicate something should be added before viewing
+        if (budgetTrackerList.isEmpty()){
+            log.info("Tried to search before having any entries.");
+            throw new BudgetTrackerException("Nothing to view, add an entry before viewing...");
+        }
+        // create a new budgetTrackerList to hold the results of the search
+
+        List<budgetTracker> budgetTrackerSearchResultsList = new ArrayList<>();
+
+        // loop through the budget tracker list and determine indexes that have matching value in the description field.
+        // return the values in that list
+
+        for (int i = 0; i < budgetTrackerList.size(); i++) {
+            if (budgetTrackerList.get(i).getDescription().equals(searchWord)) {
+                budgetTrackerSearchResultsList.add(budgetTrackerList.get(i));
+            }
+        }
+
+        return budgetTrackerSearchResultsList;
+    }
+
 }
